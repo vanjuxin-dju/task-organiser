@@ -1,0 +1,20 @@
+{
+  "name": "task-organiser",
+  "version": "0.0.1",
+  "homepage": "https://github.com/vanjuxin-dju/task-organiser",
+  "authors": [
+    "Ванюхин Дмитрий"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "angular": "~1.2.14"
+  }
+}

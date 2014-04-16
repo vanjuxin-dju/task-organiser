@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ежедневник</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="engine.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="iconscontainer">
+			<span id="newtask"><img src="icons/new.png" alt="Новая заметка" title="Новая заметка"></span>
+			<span id="removeall"><img src="icons/removeall.png" alt="Удалить все заметки" title="Удалить все заметки"></span>
+		</div>
+		<div class="header" id="header">
+			<span>id</span>
+			<span>Задача</span>
+			<span>Описание</span>
+			<span>Дата создания</span>
+			<span>Выполнено</span>
+			<span>Действия</span>
+		</div>
+		<div id="add">
+			<div class="add">
+				<h1 id="whattodo" style="text-align: center; margin-top: 0px;">Добавить</h1>
+				<div><span class="fieldname">ID: </span> <span id="id_field"></span></div>
+				<div><span class="fieldname">Name: </span> <input type="text" id="name_field" style="width: 160px;" placeholder="Name"></div>
+				<div><span class="fieldname">Description: </span> <input type="text" id="description_field" style="width: 160px;" placeholder="Description"></div>
+				<div><span class="fieldname">Date: </span> <span id="date_field">will be generated</span></div>
+				<div><span class="fieldname">Complete: </span> <input type="checkbox" id="complete_field">Complete</div>
+				<div style="text-align: center;"><span id="confirm"><img src="icons/accept.png" alt="Accept" title="Добавить"></span><span id="hide"><img src='icons/cancel.png' alt='Cancel' title="Отмена"></span></div>
+				<div id="progress">Progress...</div>
+			</div>
+		</div>
+		<div id="pages"></div>
+	</div>
+</body>
+</html>
