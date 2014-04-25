@@ -1,8 +1,4 @@
-var length = 0;
 var lastKey = 0;
-var keys = [];
-var values = [];
-var page = 1;
 var doUpdate = false;
 
 function currentDateString() {
@@ -37,7 +33,7 @@ $(document).ready(function () {
 	$('#removeall').on("click", function () {
 		$('.items').remove();
 		$.post("/remove", { 'id': 'all'});
-		length = lastKey = 0;
+		lastKey = 0;
 	});
 
 	$('#confirm').on("click", function () {
@@ -50,7 +46,6 @@ $(document).ready(function () {
 			date = currentDateString();
 			addElem(id, name, description, date, isComplete);
 			hide();
-			length++;
 			lastKey++;
 		} else {
 			var inner = "<span>" + id + "</span> <span>" + name + "</span> <span>" + description + "</span> " +
@@ -64,8 +59,6 @@ $(document).ready(function () {
 		    	$('#progress').css('display', 'none');
 		    });
 		    $('#' + id).html(inner);
-		   	/*$('<div class="items" id="' + id + '" draggable>' + inner + 
-		   		'</div>').insertBefore(document.getElementById('add'));*/
 			doUpdate = false;
 			hide();
 		}
@@ -89,37 +82,11 @@ $(document).ready(function () {
 				data.result[i].ID + "\")'></span>";
 			$('<div class="items" id="' + data.result[i].ID + '" draggable>' + inner + 
 				'</div>').insertBefore(document.getElementById('add'));
-			length++;
 			var cur = parseInt(data.result[i].ID.substring(2));
 			lastKey = (lastKey < cur ? cur : lastKey);
 		};
 	}, "json");
 });
-
-/*function confirm() {
-	id = document.getElementById("id_field").value;
-	name = document.getElementById("name_field").value;
-	description = document.getElementById("description_field").value;
-	isComplete = document.getElementById("complete_field").checked;
-	if (/*!localStorage[id]*/ /*true) {
-		date = currentDateString();
-		//jsonString = '{"id":"'+ id +'", "name":"' + name +'","description":"' + description + '","date":"'+date+'","iscomplete":"'+isComplete+'"}';
-		//localStorage.setItem(id, jsonString);
-		addElem(id, name, description, date, isComplete);
-		hide();
-		length++;
-		lastKey++;
-	} else {
-		if (document.getElementById("date_field").value) {
-			//jsonString = '{"id":"'+ id +'","name":"' + name +'","description":"' + description + '","date":"'+document.getElementById("date_field").value +'","iscomplete":"'+isComplete+'"}';
-			//localStorage.setItem(id, jsonString);
-			el = document.getElementById(id);
-			el.innerHTML = "<span>" + id + "</span> <span>" + name + "</span> <span>" + description + "</span> <span>" + document.getElementById("date_field").value + "</span> <span>" + isComplete + "</span> <span><input type='button' value='Edit' onclick='updateTask(\"" + id + "\")'><input type='button' value='Remove' onclick='removeTask(\"" + id + "\")'></span>";
-			hide();
-		} else
-			alert("Нельзя создать новый объект с существующим идентификатором!");
-	}
-}*/
 
 function hide() {
 	$("#id_field").text("");
@@ -133,7 +100,6 @@ function hide() {
 function removeTask(id) {
 	$("#" + id).remove();
 	$.post("/remove", { 'id': id});
-	length--;
 }
 
 function updateTask(id) {
@@ -141,14 +107,8 @@ function updateTask(id) {
 	$("#whattodo").text("Изменить");
 	$("#id_field").text(id);
 	doUpdate = true;
-	// $('#' + id + " span:nth-child(1)").text();
-	//elem = JSON.parse(localStorage.getItem(id));
 	$("#name_field").val($('#' + id + " span:nth-child(2)").text());
-	//$("#name_field").val(elem.name);
 	$("#description_field").val($('#' + id + " span:nth-child(3)").text());
-	//$("#description_field").val(elem.description);
 	$("#date_field").text($('#' + id + " span:nth-child(4)").text());
-	//$("#date_field").text(elem.date);
 	$("#complete_field").prop("checked", ($('#' + id + " span:nth-child(5)").text() == "true" ? true : false));
-	//$("#complete_field").prop("checked", (elem.iscomplete == "true" ? true : false));
 }
