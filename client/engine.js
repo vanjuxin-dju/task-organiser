@@ -149,6 +149,6 @@ function updateTask(id) {
 	//$("#description_field").val(elem.description);
 	$("#date_field").text($('#' + id + " span:nth-child(4)").text());
 	//$("#date_field").text(elem.date);
-	$("#complete_field").prop("checked", ($('#' + id + " span:nth-child(4)").text() == "true" ? true : false));
+	$("#complete_field").prop("checked", ($('#' + id + " span:nth-child(5)").text() == "true" ? true : false));
 	//$("#complete_field").prop("checked", (elem.iscomplete == "true" ? true : false));
 }
